@@ -2,5 +2,5 @@
   inputs:
     targetType: 'inline'
     script: |
-      echo -ex
+      set -ex
       echo 'Hello world'
