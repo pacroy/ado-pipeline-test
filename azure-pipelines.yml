@@ -2,7 +2,7 @@ stages:
   - stage: 'preparations'
     displayName: 'Preparations'
     jobs:
-      - job: 'check-tools'
+      - job: 'check_tools'
         displayName: 'Check Tools'
         steps:
         - task: Bash@3
