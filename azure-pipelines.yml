@@ -9,7 +9,7 @@ stages:
           inputs:
             targetType: 'inline'
             script: |
-              set -ex
+              set -x
               if [ -x "$(command -v az)" ]; then
                 which az
                 az version
