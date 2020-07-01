@@ -10,4 +10,33 @@ stages:
             targetType: 'inline'
             script: |
               set -ex
-              echo 'Hello world'
+              if [ -x "$(command -v az)" ]; then
+                which az
+                az version
+              else
+                echo 'az not found'
+              fi
+              if [ -x "$(command -v kubectl)" ]; then
+                which kubctl
+                kubectl version --client=true
+              else
+                echo 'kubectl not found'
+              fi
+              if [ -x "$(command -v helm)" ]; then
+                which helm
+                helm version
+              else
+                echo 'helm not found'
+              fi
+              if [ -x "$(command -v azcopy)" ]; then
+                which azcopy
+                azcopy --version
+              else
+                echo 'azcopy not found'
+              fi
+              if [ -x "$(command -v aws)" ]; then
+                which aws
+                aws --version
+              else
+                echo 'aws not found'
+              fi
