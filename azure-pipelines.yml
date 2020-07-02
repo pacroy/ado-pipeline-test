@@ -1,6 +1,6 @@
 stages:
-  - stage: 'check_version'
-    displayName: 'Check Version'
+  - stage: 'check_default_version'
+    displayName: 'Check Default Version'
     jobs:
       - job: 'ubuntu_1804'
         displayName: 'ubuntu-18.04'
@@ -101,4 +101,66 @@ stages:
                   aws --version
                 else
                   echo 'aws not found'
+                fi
+  - stage: 'install_tools'
+    displayName: 'Install Tools'
+    jobs:
+      - job: 'install_terraform'
+        displayName: 'ubuntu-18.04'
+        pool:
+          vmImage: 'ubuntu-18.04'
+        steps:
+          - task: Bash@3
+            displayName: 'Install Terraform'
+            inputs:
+              failOnStderr: true
+              noProfile: true
+              noRc: true
+              targetType: 'inline'
+              script: |
+                curl -sL https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip -o terraform.zip
+                unzip terraform.zip
+                mv terraform $(Agent.ToolsDirectory)
+      - job: 'install_helm'
+        displayName: 'ubuntu-18.04'
+        pool:
+          vmImage: 'ubuntu-18.04'
+        steps:
+          - task: Bash@3
+            displayName: 'Install Helm'
+            inputs:
+              failOnStderr: true
+              noProfile: true
+              noRc: true
+              targetType: 'inline'
+              script: |
+                curl -sL https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz -o helm.tgz
+                tar -xvzf helm.tgz
+                mv linux-amd64/helm $(Agent.ToolsDirectory)
+      - job: 'check_version'
+        displayName: 'Check Version'
+        dependsOn: ['install_terraform','install_helm']
+        pool:
+          vmImage: 'ubuntu-18.04'
+        steps:
+          - task: Bash@3
+            displayName: 'Check Version'
+            inputs:
+              failOnStderr: false
+              noProfile: true
+              noRc: true
+              targetType: 'inline'
+              script: |
+                PATH=$(Agent.ToolsDirectory):$PATH
+                if [ -x "$(command -v terraform)" ]; then
+                  which terraform
+                  terraform version
+                else
+                  echo 'terraform not found'
+                fi
+                if [ -x "$(command -v helm)" ]; then
+                  which helm
+                  helm version
+                else
+                  echo 'helm not found'
                 fi
