@@ -10,7 +10,7 @@ stages:
           - task: Bash@3
             displayName: 'Check Version'
             inputs:
-              failOnStderr: true
+              failOnStderr: false
               noProfile: true
               noRc: true
               targetType: 'inline'
@@ -42,13 +42,13 @@ stages:
                 fi
                 if [ -x "$(command -v azcopy)" ]; then
                   which azcopy
-                  if azcopy --version; then :; fi
+                  azcopy --version
                 else
                   echo 'azcopy not found'
                 fi
                 if [ -x "$(command -v aws)" ]; then
                   which aws
-                  if aws --version; then :; fi
+                  aws --version
                 else
                   echo 'aws not found'
                 fi
@@ -60,7 +60,7 @@ stages:
           - task: Bash@3
             displayName: 'Check Version'
             inputs:
-              failOnStderr: true
+              failOnStderr: false
               noProfile: true
               noRc: true
               targetType: 'inline'
@@ -92,13 +92,13 @@ stages:
                 fi
                 if [ -x "$(command -v azcopy)" ]; then
                   which azcopy
-                  if azcopy --version; then :; fi
+                  azcopy --version
                 else
                   echo 'azcopy not found'
                 fi
                 if [ -x "$(command -v aws)" ]; then
                   which aws
-                  if aws --version; then :; fi
+                  aws --version
                 else
                   echo 'aws not found'
                 fi
