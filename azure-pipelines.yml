@@ -9,7 +9,7 @@ stages:
           inputs:
             targetType: 'inline'
             script: |
-              set -x
+              set -e
               if [ -x "$(command -v az)" ]; then
                 which az
                 az version
@@ -28,9 +28,15 @@ stages:
               else
                 echo 'helm not found'
               fi
+              if [ -x "$(command -v terraform)" ]; then
+                which terraform
+                terraform version
+              else
+                echo 'helm not found'
+              fi
               if [ -x "$(command -v azcopy)" ]; then
                 which azcopy
-                azcopy --version
+                azcopy --version || {}
               else
                 echo 'azcopy not found'
               fi
