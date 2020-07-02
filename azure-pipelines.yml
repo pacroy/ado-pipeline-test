@@ -6,6 +6,7 @@ stages:
         displayName: 'Check Tools'
         steps:
         - task: Bash@3
+          displayName: 'Check Tool Version'
           inputs:
             targetType: 'inline'
             script: |
