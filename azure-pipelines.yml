@@ -107,8 +107,8 @@ stages:
   - stage: 'install_tools'
     displayName: 'Install Tools'
     jobs:
-      - job: 'install_terraform'
-        displayName: 'Install Terraform'
+      - job: 'install_tools'
+        displayName: 'Install Tools'
         pool:
           vmImage: 'ubuntu-18.04'
         steps:
@@ -124,12 +124,6 @@ stages:
                 curl -sL https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip -o terraform.zip
                 unzip terraform.zip
                 mv terraform $(Agent.ToolsDirectory)
-      - job: 'install_helm'
-        displayName: 'Install Helm'
-        pool:
-          vmImage: 'ubuntu-18.04'
-        steps:
-          - checkout: none
           - task: Bash@3
             displayName: 'Install Helm'
             inputs:
@@ -141,13 +135,6 @@ stages:
                 curl -sL https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz -o helm.tgz
                 tar -xvzf helm.tgz
                 mv linux-amd64/helm $(Agent.ToolsDirectory)
-      - job: 'check_version'
-        displayName: 'Check Version'
-        dependsOn: ['install_terraform','install_helm']
-        pool:
-          vmImage: 'ubuntu-18.04'
-        steps:
-          - checkout: none
           - task: Bash@3
             displayName: 'Check Version'
             inputs:
