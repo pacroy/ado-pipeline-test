@@ -33,7 +33,7 @@ stages:
                 which terraform
                 terraform version
               else
-                echo 'helm not found'
+                echo 'terraform not found'
               fi
               if [ -x "$(command -v azcopy)" ]; then
                 which azcopy
