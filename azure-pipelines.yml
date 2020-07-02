@@ -46,12 +46,6 @@ stages:
                 else
                   echo 'azcopy not found'
                 fi
-                if [ -x "$(command -v aws)" ]; then
-                  which aws
-                  if aws --version; then :; fi
-                else
-                  echo 'aws not found'
-                fi
       - job: 'ubuntu_1604'
         displayName: 'ubuntu-16.04'
         pool:
@@ -95,10 +89,4 @@ stages:
                   if azcopy --version; then :; fi
                 else
                   echo 'azcopy not found'
-                fi
-                if [ -x "$(command -v aws)" ]; then
-                  which aws
-                  if aws --version; then :; fi
-                else
-                  echo 'aws not found'
                 fi
