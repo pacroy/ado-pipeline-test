@@ -36,7 +36,7 @@ stages:
               fi
               if [ -x "$(command -v azcopy)" ]; then
                 which azcopy
-                azcopy --version || {}
+                if azcopy --version; then :; fi
               else
                 echo 'azcopy not found'
               fi
