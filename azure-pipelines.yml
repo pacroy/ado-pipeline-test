@@ -5,8 +5,8 @@ stages:
       - job: 'check_tools'
         displayName: 'Check Tools'
         pool:
-          vmImage: 'ubuntu-16.04'
-        #container: ubuntu:16.04
+          vmImage: 'ubuntu-18.04'
+        container: ubuntu:18.04
         steps:
         - task: Bash@3
           displayName: 'Check Tool Version'
