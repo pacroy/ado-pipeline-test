@@ -17,7 +17,7 @@ stages:
             script: |
               docker build -t myimage:latest -<<EOF
               FROM ubuntu:18.04
-              RUN sudo apt-get update && sudo apt-get upgrade -y
+              RUN apt-get update && apt-get upgrade -y
               RUN curl -sL https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip -o terraform.zip && unzip terraform.zip && mv terraform /usr/local/bin/terraform && rm terraform.zip
               RUN curl -sL https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz -o helm.tgz && tar -xvzf helm.tgz && mv linux-amd64/helm /usr/local/bin/helm && rm -r linux-amd64 && rm helm.tgz
               EOF
