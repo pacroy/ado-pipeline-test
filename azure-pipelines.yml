@@ -11,8 +11,8 @@ stages:
             displayName: 'Check Version'
             inputs:
               failOnStderr: true
-              noProfile: false
-              noRc: false
+              noProfile: true
+              noRc: true
               targetType: 'inline'
               script: |
                 cat /etc/os-release
@@ -48,7 +48,7 @@ stages:
                 fi
                 if [ -x "$(command -v aws)" ]; then
                   which aws
-                  aws --version
+                  if aws --version; then :; fi
                 else
                   echo 'aws not found'
                 fi
@@ -61,8 +61,8 @@ stages:
             displayName: 'Check Version'
             inputs:
               failOnStderr: true
-              noProfile: false
-              noRc: false
+              noProfile: true
+              noRc: true
               targetType: 'inline'
               script: |
                 cat /etc/os-release
@@ -98,7 +98,7 @@ stages:
                 fi
                 if [ -x "$(command -v aws)" ]; then
                   which aws
-                  aws --version
+                  if aws --version; then :; fi
                 else
                   echo 'aws not found'
                 fi
