@@ -1,14 +1,12 @@
-pool:
-  vmImage: 'ubuntu-16.04'
-
-container: ubuntu:16.04
-
 stages:
   - stage: 'preparations'
     displayName: 'Preparations'
     jobs:
       - job: 'check_tools'
         displayName: 'Check Tools'
+        pool:
+          vmImage: 'ubuntu-16.04'
+        container: ubuntu:16.04
         steps:
         - task: Bash@3
           displayName: 'Check Tool Version'
