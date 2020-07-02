@@ -8,43 +8,47 @@ stages:
           vmImage: 'ubuntu-18.04'
         container: ubuntu:18.04
         steps:
-        - bash: |
-            set -e
-            if [ -x "$(command -v az)" ]; then
-              which az
-              az version
-            else
-              echo 'az not found'
-            fi
-            if [ -x "$(command -v kubectl)" ]; then
-              which kubectl
-              kubectl version --client=true
-            else
-              echo 'kubectl not found'
-            fi
-            if [ -x "$(command -v helm)" ]; then
-              which helm
-              helm version
-            else
-              echo 'helm not found'
-            fi
-            if [ -x "$(command -v terraform)" ]; then
-              which terraform
-              terraform version
-            else
-              echo 'terraform not found'
-            fi
-            if [ -x "$(command -v azcopy)" ]; then
-              which azcopy
-              if azcopy --version; then :; fi
-            else
-              echo 'azcopy not found'
-            fi
-            if [ -x "$(command -v aws)" ]; then
-              which aws
-              aws --version
-            else
-              echo 'aws not found'
-            fi
-          name: 'check_tool_version'
+        - task: Bash@3
           displayName: 'Check Tool Version'
+          inputs:
+            failOnStderr: true
+            noProfile: true
+            noRc: true
+            targetType: 'inline'
+            script: |
+              if [ -x "$(command -v az)" ]; then
+                which az
+                az version
+              else
+                echo 'az not found'
+              fi
+              if [ -x "$(command -v kubectl)" ]; then
+                which kubectl
+                kubectl version --client=true
+              else
+                echo 'kubectl not found'
+              fi
+              if [ -x "$(command -v helm)" ]; then
+                which helm
+                helm version
+              else
+                echo 'helm not found'
+              fi
+              if [ -x "$(command -v terraform)" ]; then
+                which terraform
+                terraform version
+              else
+                echo 'terraform not found'
+              fi
+              if [ -x "$(command -v azcopy)" ]; then
+                which azcopy
+                if azcopy --version; then :; fi
+              else
+                echo 'azcopy not found'
+              fi
+              if [ -x "$(command -v aws)" ]; then
+                which aws
+                aws --version
+              else
+                echo 'aws not found'
+              fi
