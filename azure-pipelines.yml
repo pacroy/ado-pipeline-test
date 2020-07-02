@@ -23,6 +23,7 @@ stages:
               EOF
       - job: 'check_tools'
         displayName: 'Check Tools'
+        dependsOn: ['prepare_image']
         pool:
           vmImage: 'ubuntu-18.04'
         container: myimage:latest
