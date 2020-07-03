@@ -21,7 +21,7 @@ stages:
                 echo '========== Environment Variables =========='
                 printenv
                 echo '========== Agent Variables =========='
-                echo '$(Agent)'
+                echo "$(Agent)"
                 echo '========== OS Information =========='
                 cat /etc/os-release
                 echo '========== Tool Version =========='
@@ -56,7 +56,7 @@ stages:
                 echo '========== Environment Variables =========='
                 printenv
                 echo '========== Agent Variables =========='
-                echo '$(Agent)'
+                echo "$(Agent)"
                 echo '========== OS Information =========='
                 cat /etc/os-release
                 echo '========== Tool Version =========='
