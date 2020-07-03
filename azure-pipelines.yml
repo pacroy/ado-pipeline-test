@@ -16,7 +16,13 @@ stages:
               noRc: true
               targetType: 'inline'
               script: |
+                echo '========== User Information =========='
+                who
+                echo '========== Environment Variables =========='
+                printenv
+                echo '========== OS Information =========='
                 cat /etc/os-release
+                echo '========== Tool Version =========='
                 if [ -x "$(command -v az)" ]; then
                   which az
                   az version
@@ -67,7 +73,13 @@ stages:
               noRc: true
               targetType: 'inline'
               script: |
+                echo '========== User Information =========='
+                who
+                echo '========== Environment Variables =========='
+                printenv
+                echo '========== OS Information =========='
                 cat /etc/os-release
+                echo '========== Tool Version =========='
                 if [ -x "$(command -v az)" ]; then
                   which az
                   az version
