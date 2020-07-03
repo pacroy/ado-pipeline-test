@@ -17,7 +17,7 @@ stages:
               targetType: 'inline'
               script: |
                 echo '========== User Information =========='
-                who
+                whoami
                 echo '========== Environment Variables =========='
                 printenv
                 echo '========== OS Information =========='
@@ -50,7 +50,7 @@ stages:
               targetType: 'inline'
               script: |
                 echo '========== User Information =========='
-                who
+                whoami
                 echo '========== Environment Variables =========='
                 printenv
                 echo '========== OS Information =========='
@@ -108,5 +108,7 @@ stages:
               targetType: 'inline'
               script: |
                 PATH=$(Agent.ToolsDirectory):$PATH
+                command -v terraform
                 terraform version
+                command -v helm
                 helm version
